@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    max-width: 960px;
+    min-width: 960px;
+    font-size:  12px;
+    font-family: Verdana, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+
+a {
+    color: #000000;
+    text-decoration:none;
+    -moz-text-decoration-color: #9DDB4D; /* Code for Firefox */
+    text-decoration-color: #9DDB4D;
+}
+
+a:hover {
+    color:#67A220;
+}
+
+.two-column {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.two-column-1 {
+    display:inline-block;
+    width: 67%;
+    margin: 0;
+    vertical-align:top;
+}
+
+.two-column-2 {
+    display:inline-block;
+    padding-left: 6%;
+    margin:0;
+    width:25%;
+    vertical-align:top;
+}
+
+.two-column-2-block {
+    margin-top: 15px;
+    font-size: 11.5px;
+}
+
+
+
+.two-column-1-block {
+    margin-top: 15px;
+}
+
+.two-column-1-block a {
+    text-decoration: none;
+    color: #5A8D1C;
+}
+
+
+
+
+ol, ul {
+    padding: 0;
+    margin: 0;
+    list-style:none;
+}
+
+
+
+#header {
+    margin: 25px 0px 10px 0px;
+}
+
+h2 {
+    color: #E87102;
+    font-weight:bold;
+    font-size:11pt;
+    margin-bottom:0px;
+}
+
+h4 {
+    margin-bottom:0px;
+}
+
+.two-column-2 h3 {
+    font-weight:bold;
+    font-size:8.5pt;
+    margin: 0;
+}
+
+
+.two-column-1 h3 {
+    font-weight:bold;
+    font-size:9pt;
+    margin: 10px 0 10px 0;
+}
+
+#nav {
+    color: #eee;
+    text-align: right;
+    margin-bottom: 30px;
+    margin-top: -35px;
+}
+
+#nav a {
+    text-decoration: none;
+    font-weight:bold;
+    color:#74B624;
+    margin: 0px 5px 0px 5px;
+}
+
+#nav a:hover{
+    color: #FD8008;
+}
+
+.pThumbnail {
+    width: 120px;
+    vertical-align:top;
+    margin-bottom: auto;
+}
+
+
+.footer {
+    margin: 30px 0 30px 0;
+    color: #666;
+    font-size: 9px;
+    min-width:90%;
+    display: block;
+    text-align: center;
+    visibility:hidden;
+}
+
+.pull_right {
+    float: right;
+}
