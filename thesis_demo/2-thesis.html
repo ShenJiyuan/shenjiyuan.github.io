@@ -20,6 +20,13 @@
             <p>Partition DNN for working in distributed computing nodes.<br>
             <b>Specification:</b> Handle large scale deep neural networks to spread their work load including training and running across these distributed computing systems in pursuing further parallelism and higher performance.</p>
             
+            <h3>My Work</h3>
+            <p>
+                &clubs; Proposed GraphDNN Framework to satisfy DNN partition in Distributed Computing Systems. The framework can reduce costs to its 0.1*0.40715189=0.040715189.<br>
+                &clubs; Implemented theoretical experiments.
+                &clubs; Implemented a real distributed system, and Experimented GraphDNN on real boards.
+            </p>
+            
             <h3>Method</h3>
             <p><b>Step 1:</b> Deep Compression: cut out synapses.<br>
              <b>Step 2:</b> Statically partition weight matrix: for fully-connected layers: find k-largest eigenvalues, and apply k-means to wigenvector; for convolutional layers: make simple copies to each distributed computing node. (notice the difference from the baseline partition.)<br>
@@ -48,7 +55,8 @@
             
             <h3>References</h3>
             [1] Detailed PPTX Introduction. [<a href="thesis.pptx">pptx</a>]<br>
-            [2] Jiyuan Shen, Deep Neural Network Partitioning in Distributed Computing Systems, Undergraduate Thesis, 2017 [<a href="https://shenjiyuan.github.io/files/thesis.pdf">pdf</a>]
+            [2] Jiyuan Shen, Deep Neural Network Partitioning in Distributed Computing Systems, Undergraduate Thesis, 2017 [<a href="https://shenjiyuan.github.io/files/thesis.pdf">pdf</a>]<br>
+            [3] Spark and Caffe on TK1 boards, [<a href="Spark and Caffe on TK1 boards.docx">docx</a>]<br>
         </section>
     </body>
     <script>
