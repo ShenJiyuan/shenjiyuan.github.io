@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "weight-memristor retraining" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2>Learning Variations and Defects: a Neural-network Retraining Method for Fault Tolerance in the RRAM Crossbar</h2>
+            <h3>Goal</h3>
+            <p>Make morphic computing in RRAM Crossbar more accurate and possible.<br>
+            <b>Specification:</b> Retrain the neural-network based on the fault/variation distribution in the RRAM crossbar prevent the large weight-connections from being mapped to the abnormal memristors. The neural-network based applications executed on the RRAM crossbar can thus gain little loss of accuracy, by minimizing the value of the weight mapped to a memristor with fault (high variability).</p>
+            
+            <h3>Method</h3>
+            <p><b>Step 1:</b> Matching: derive a weight-memristor mapping for variation and defect tolerance.<br>
+            Since we the matching is transformed to the problem of finding the minimal weight maximum matching. ”Kuhn-Munkres” algorithm is adopted to obtain a better weight- memristor mapping on a RRAM crossbar with small memristor resistance variation.<br>
+            <b>Example:</b> Fig.(a) the greedy-based method derives; Fig. (b) the bipartite-matching method derives; Fig.(c) the bipartite-matching method can hardly resolve.<br>
+            <center><img src="matching.png" alt="before alignment" style="width:500px;height:250px"></center>
+            <br>
+             <b>Step 2:</b> Train the neural network.<br>
+             <b>Step 3:</b> Fixing the weight connections and retrain it.<br>
+             <b>Example:</b> train thenetwork weights; fix the weight connections; after the retraining and finally the next iteration.
+              <center><img src="fixing.png" alt="tracked video" style="width:500px;height:150px"></center>
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+            
+            <h3>References</h3>
+            [1] Lerong Chen, Jiawen Li, Jiyuan Shen, Li Jiang and Xiaoyao Liang, Learning Variations and Defects: a Neural-network Retraining Method for Fault Tolerance in the RRAM Crossbar, Designed Automation and Test in Europe, 2017 [<a href="https://shenjiyuan.github.io/files/memristor.pdf">pdf</a>]<br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
