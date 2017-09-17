@@ -21,7 +21,7 @@
             <b>Specification:</b> Handle large scale deep neural networks to spread their work load including training and running across these distributed computing systems in pursuing further parallelism and higher performance.</p>
             
             <h3>Method</h3>
-            <p><b>Step 1:</b>Deep Compression: cut out synapses.<br>
+            <p><b>Step 1:</b> Deep Compression: cut out synapses.<br>
              <b>Step 2:</b> Statically partition weight matrix: for fully-connected layers: find k-largest eigenvalues, and apply k-means to wigenvector; for convolutional layers: make simple copies to each distributed computing node. (notice the difference from the baseline partition.)<br>
             <!--<b>Example:</b> If this is what the camera sees (single object):<br>
             <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
