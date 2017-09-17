@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "3D from photos" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2>Three Dimensional Reconstruction from multiple Photos</h2>
+            <h3>Goal</h3>
+            <p>Recover 3D shape of an unknown object from information extracted from different views.<br>
+            <b>Specification:</b> This project deals with the three dimensional reconstruction of leaves by given multiple photos which are taken by normal cameras. Or more academically saying, reconstructing 3D point cloud with sets of frames in unknown angles. In order to start, environments should be set up beforehand, such as visual studio with openCV and PCL lib.</p>
+            
+            <h3>Method</h3>
+            <p><b>Step 1:</b> Feature Detection and Matching: SURF algorithm. There are various algorithms for feature detections, please find more if you are interested, such as basically corner-like, sliding windows, eigenvalues, or more SIFT etc. Output is Fundamental Matrix.<br>
+            <b>Example:</b> SURF implementation with OpenCV as:
+            <center><img src="surf.png" alt="before alignment" style="width:350px;height:100px"></center>
+            <b>Improvement:</b> Since our photos are taken by normal cameras, they are in such bad conditions. I developed filtering feature sequence to filter out bad matches and this included process such as KNN ratio test, symmetry test, and RANSAC.<br><br>
+            <b>Step 2:</b> Structure from Motion(SFM): refers to the process of estimating three-dimensional structures from two-dimensional image sequences which may be coupled with local motion signals.<br>
+            <b>Improvement:</b> First, Fundamental Matrix to Essential Matrix.This can be done using a camera calibration matrix K, generated from a provided frame. (Notice: this action is to avoid projective ambiguity. Furthermore, if we use SVD to decompose Essential Matrix, we can obtain Camera Matrix solutions. However, constructing the Camera matrix gives four possible combinations, and it is difficult to tell which solution is valid in the real world unless triangulation is performed.)
+            <br><br>
+            <b>Step 3:</b> SolvePnP: It takes a set of 2D-3D matching points, Calibration matrix and Distortion matrix to output Camera Matrix. Here, I designed Lookup Table which stores 2D coordinates of current frame and its triangulated 3D coordinates. After this, we get a new camera matrix that minimizes projection error.
+            <br><br>
+            <b>Step 4:</b> Triangulation: Extended Iterative-LS method. I assign weight in each iteration to generate more accurate result.<br>
+            <b>Example:</b>
+            <center><img src="example.png" alt="before alignment" style="width:350px;height:260px"></center>
+            <b>Step 5 (optional):</b> Getting Contour: KNN search to find the normalization of each points, then by compare this value with each other, we will choose those points with large gradients.
+            <center><img src="contour.png" alt="before alignment" style="width:350px;height:260px"></center>
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+            
+            <h3>References</h3>
+            [1] Jiyuan Shen, Xuemin Yang and Zengzhi Fan, Software Engineering Design Report, 2015 [<a href="https://shenjiyuan.github.io/files/leave.pdf">pdf</a>]<br>
+            [2] Open Source Computer Vision (OpenCV) Library, [<a href="http://opencv.org/">webpage</a>]<br>
+            [3] The Point Cloud Library (PCL), [<a href="http://pointclouds.org/">webpage</a>]<br>
+            [4] Noah Snavely, Bundler: Structure from Motion (SfM) for Unordered Image Collections, [<a href="http://www.cs.cornell.edu/~snavely/bundler/">webpage</a>]<br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
