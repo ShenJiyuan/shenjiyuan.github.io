@@ -20,6 +20,13 @@
             <p>Make morphic computing in RRAM Crossbar more accurate and possible.<br>
             <b>Specification:</b> Retrain the neural-network based on the fault/variation distribution in the RRAM crossbar prevent the large weight-connections from being mapped to the abnormal memristors. The neural-network based applications executed on the RRAM crossbar can thus gain little loss of accuracy, by minimizing the value of the weight mapped to a memristor with fault (high variability).</p>
             
+            <h3>My Work</h3>
+            <p>
+                &clubs; Designed redundancy combined with “Kuhn-Munkres” mapping method which is applied to the model of variation on memristors given by Vortex(DAC15) where features include normal distribution, random presence and weight-error relations instead of RRAM Crossbar computing.<br>
+                &clubs; Implemented Redundancy-Mapping on the standard 784*10 mnist dataset (20-30% advanced).<br>
+                &clubs; Theoretically analyzed the relationship of topology and mapping and improvements of the algorithm designed.
+                </p>
+            
             <h3>Method</h3>
             <p><b>Step 1:</b> Matching: derive a weight-memristor mapping for variation and defect tolerance.<br>
             Since we the matching is transformed to the problem of finding the minimal weight maximum matching. ”Kuhn-Munkres” algorithm is adopted to obtain a better weight- memristor mapping on a RRAM crossbar with small memristor resistance variation.<br>
@@ -38,14 +45,7 @@
             Different types of activity form different heat map shapes, for example 2-object activities:<br>
             <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
             </p>
-            
-            <h3>My Work</h3>
-            <p>
-                &clubs; Designed redundancy combined with “Kuhn-Munkres” mapping method which is applied to the model of variation on memristors given by Vortex(DAC15) where features include normal distribution, random presence and weight-error relations instead of RRAM Crossbar computing.<br>
-                &clubs; Implemented Redundancy-Mapping on the standard 784*10 mnist dataset (20-30% advanced).<br>
-                &clubs; Theoretically analyzed the relationship of topology and mapping and improvements of the algorithm designed.
-                </p>
-            
+         
             <h3>References</h3>
             [1] Lerong Chen, Jiawen Li, Jiyuan Shen, Li Jiang and Xiaoyao Liang, Learning Variations and Defects: a Neural-network Retraining Method for Fault Tolerance in the RRAM Crossbar, Designed Automation and Test in Europe, 2017 [<a href="https://shenjiyuan.github.io/files/memristor.pdf">pdf</a>]<br>
         </section>
