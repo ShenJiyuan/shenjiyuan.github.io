@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "MIPS CPU Simulator" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2><center>Patent Classification Modeling based on Machine Learning</center></h2>
+            
+            <center>Jiyuan Shen, Junwei Yan</center>
+            
+            <h3>Goal</h3>
+            Use simple NN strategies to solve patent classification; experiments on BCMI datastes.
+            
+            <h3>My Work</h3>
+            <p>
+            &clubs; Devised the classification algorithm mainly in learning kernel for massive patent classification.<br>
+            &clubs; Evaluated with BCMI dataset and achieved results with high accuracy.<br>
+            &clubs; Used multiple passing interface to achieve parallelism, and implemented parallel training (reduced time 2212s to 80s).
+            </p>
+            
+            <h3>Method</h3>
+            <p>
+            Refer to the report for implementations.<br>
+            <b>Step 1: Liblinear:</b> use regular single thread to learn and experiment. Notice <br>
+            <b>Step 2: MinMax Method:</b> ramdonly split the original problem to subproblems in scale, each subproblem is learned by using Liblinear, then MinMax the sub-results. Multiple threads are utilized.<br>
+            <b>Step 3: Based on Pre-knowledge and MinMax:</b> instead of randomly split the original problem, here we use pre-knowledge to split it to subproblems, then each subproblem is laerned by Liblinear and Minmax their results. Multiple threads are utilized as well.<br>
+            <b>Step 4:</b> Calculate the F1 value of this three classifiers, draw out their ROC curve, and make a comparison.<br>
+            <b>Step 5:</b> Implement a classifier, such as MLP or SVM polynomial kernal, and make comparison with LibLinear.<br>
+            
+            <b>Example:</b> ROC Curve of three classifiers:<br>
+            <center><img src="roc.png" alt="tracked video" style="width:400px;height:200px"></center>
+            <br>
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+            
+            <h3>References</h3>
+            [1] LibLinear: A Library for Large Linear Classification [<a href="https://www.csie.ntu.edu.tw/~cjlin/liblinear/">webpage</a>]<br>
+            [2] Blaise Barney, POSIX Threads Programming, [<a href="https://computing.llnl.gov/tutorials/pthreads/">webpage</a>]<br>
+            [3] Jiyuan Shen, Patent Classification Report (in Chinese), [<a href="https://github.com/ShenJiyuan/guide-for-ML-and-DM/blob/master/multi-classification-project/Report.pdf">pdf</a>]
+            <br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
