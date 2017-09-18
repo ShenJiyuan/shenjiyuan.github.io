@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "MIPS CPU Simulator" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2><center>Advanced MIPS CPU Simulator with Multi-Cycle/Pipeline</center></h2>
+            
+            <center>Jiyuan Shen</center>
+            
+            <h3>Goal</h3>
+            To develop a MIPS CPU simulator with multi-cycle and pipeline.
+            
+            <h3>My Work</h3>
+            <p>
+            &clubs; Developed simulator of each components used in MIPS CPU like instruction mem, data mem, ALU and ALU Control.<br>
+            &clubs; Connected all components into an advanced simulator with multi-cycle and pipeline.<br>
+            &clubs; Experimented the simulator on a Xilinx Experimental Board in Verilog HDL.
+            </p>
+            
+            <h3>Method</h3>
+            <p>
+            Refer to the report for implementations.<br>
+            <b>Step 1:</b> Setting up Xilinx environment such as:
+            <center><img src="envir.png" alt="before alignment" style="width:300px;height:300px"></center><br>
+            <b>Step 2:</b> Control Module: Produce control signals for regDst, aluSrc, memToReg, regWrite, memRead, memWrite, branch, jump and aluOp.
+            <b>Example:</b> after implementation, test results for R, lw, sw, beq and jump operations are like:
+            <center><img src="3-1-ctrl.png" alt="before alignment" style="width:600px;height:250px"></center><br>
+            <b>Step 3:</b> ALU Control Module: Decide instruction type based on 2-bit AluOp (output from Control Module) and 6-bit instruction.
+            <b>Example:</b> after implementation, a random test result is like:
+            <center><img src="3-2-alu.png" alt="before alignment" style="width:600px;height:250px"></center><br>
+            <b>Step 4:</b> Register Module: Read data at any time; write data whtn clock down side:
+            <center><img src="4-1-reg.png" alt="before alignment" style="width:600px;height:280px"></center><br><br>
+            <b>Step 5:</b> Memory Module: similar to and simplier than the register module.<br>
+            <b>Step 6:</b> Sign Extension Module: extend 16-bit signed numbers to 32-bit signed numbers. i.e., if the first bit of it is 1, then we extend 16-1 before the original 16-bit number; otherwise 16-0 before.<br>
+            <b>Step 7: A complete single-cycle simulator:</b> Connect all these modules and experiment. See Lab 5 Report.<br>
+            <b>Step 8: A complete multi-cycle piprline simulator:</b> Connect all these modules and experiment. Reset clock when it up. See Lab 6 Report.
+            <br><br>
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+            
+            <h3>References</h3>
+            [1] Jiyuan Shen, Advanced MIPS Simulator Code, 2014 [<a href="https://github.com/ShenJiyuan/computer-arch-simulator">git</a>]<br>
+            [2] Jiyuan Shen, Control Module and ALU Control Module (in Chinese), 2014 [<a href="https://github.com/ShenJiyuan/computer-arch-simulator/blob/master/lab3_report.pdf">pdf</a>]<br>
+            [3] Jiyuan Shen, Register Module, Memory Module and Sign Extension Module (in Chinese), 2014 [<a href="https://github.com/ShenJiyuan/computer-arch-simulator/blob/master/lab4_report.pdf">pdf</a>]<br>
+            [4] Jiyuan Shen, A complete single-cycle simulator (in Chinese), 2014 [<a href="https://github.com/ShenJiyuan/computer-arch-simulator/blob/master/lab5_report.pdf">pdf</a>]<br>
+            [5] Jiyuan Shen, A complete multi-cycle piprline simulator (in Chinese), 2014 [<a href="https://github.com/ShenJiyuan/computer-arch-simulator/blob/master/lab6_report.pdf">pdf</a>]<br>
+            <br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
