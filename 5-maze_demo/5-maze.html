@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "Mini Car play Maze" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2>Smart Vehicle Tracking and Identifying Control System</h2>
+            <h3>Goal</h3>
+            <p>Given a mini-car and references included, let the mini-car automatically solve maze games.<br>
+            <b>Specification:</b> Single chip with bluetooth module. There are specifically two side: for computer side, it should process the maze image and produces step strategies; for single chip side, it should follow the computer instruction and move correspondingly.</p>
+            
+            <h3>Method</h3>
+            <p><b>Step 1:</b> Single-chip side: Tear down the steering engine and only use wheels. Embed motor moving strategies for control commands.<br>
+            <b>Exaplanation:</b> Normally the wheels control forwarding while steering engine controls turning. But if we implement it only through wheels, we can finnaly achieve spinning around action as well. It is very helpful for mini-car to solve maze games.<br>
+            <b>Example:</b> Control commands are 6-bit chars. Each bit represents its corresponding direction. Back motor codes as:
+            <center><img src="back.png" alt="before alignment" style="width:300px;height:300px"></center>
+            
+            <b>Step 2:</b> Computer side: Real-time Image Processing. Inverse the color of maze to get fined path of capable ways instead of walls. Then apply A* Search Algorithm in each iteration to determine which of its partial paths to expand into one or more longer paths.<br>
+            <b>Explanation:</b> Notice the special characteristics of given mazes, that is, color for wall and white for path.
+            <br><br>
+            
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+            <h3>References</h3>
+            [1] Jiyuan Shen, Engineer Class Project Report, 2014 [<a href="https://github.com/ShenJiyuan/Car-Maze/blob/master/Report.pdf">pdf</a>]<br>
+            [2] Single Chip Configuration, [<a href="https://github.com/ShenJiyuan/Car-Maze/blob/master/reference%20pdfs/HC06.pdf">pdf</a>]<br>
+            [3] LauchPad Workshop Installation Procedure, [<a href="https://github.com/ShenJiyuan/Car-Maze/blob/master/reference%20pdfs/LaunchPad_Workshop_Installation_Procedure.pdf">pdf</a>]<br><br><br>
+            
+            <h3>Demo Video</h3>
+            <embed src="https://www.youtube.com/embed/pw57ywD6xOA" allowfullscreen="true" width="425" height="344"><br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
