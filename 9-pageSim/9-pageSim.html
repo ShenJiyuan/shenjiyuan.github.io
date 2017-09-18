@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "Paging Simulator" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2><center>Unix-Style Paging Simulator</center></h2>
+            
+            <center>Jiyuan Shen</center>
+            
+            <h3>Goal</h3>
+            Design and implement a paging simulator, which will read in a set of data files specifying the scheduling and memory access behavior of programs, then simulate the paging requirements of those programs.
+            
+            <h3>My Work</h3>
+            <p>
+            &clubs; Design and implement a paging simulator.<br>
+            &clubs; Implemented various page replacement strategies: FIFO, LRU and Second Cache.<br>
+            &clubs; Designed a better paging strategy, experimented the simulation and make a comparison.
+            </p>
+            
+            <h3>Method</h3>
+            <p>
+            Refer to the report for implementations.<br><br>
+            <b>Structure Overview</b><br>
+            Memory is constructed as an array where elements are all structure 'page', that is, the memory has 'memory-size' pages. Each page contains its page process, page virtual address and count. ('count': only consider for FIFO algorithm; also defined to protect the memory from endless page fault.) Also Process is constructed: the ready queue, block queue and finish queue are all consist of processes. Each process containc its name, arrive time, CPU time, need time, re-qrrive time, elapse time, IO Ops, page Fault, state, src and *next.
+            <br><br>
+            
+            <b>Policy Decision Descriptions</b><br>
+            1、New processes go at the end of the ready list. The ready list is initialized in the create functino as a queue.<br>
+            2、When a process starts up after a page fault, it is guaranteed to have the faulting page in memory.<br>
+            3、New process get priority when the new processes and the processes returning from a page fault have a same re-arrive time.<br>
+            4、Page replacement can take effects only when there exists some available page that has been used since its last into memory. Therefore, when all the pages in the memory are newly replaced into memory and have not been used, then the process which needs page replacement will be blocked. When a process find its operating page has been in the memory, then it can use the page, which will make the page in the memory be available, then we will unblock one process into ready queue. Also, one unblock will happen when the ready queue is null and the block queue is not null.
+            <br><br>
+            
+            <b>Function Descriptions</b><br>
+            <b>Main</b> First, initialize the ready queue; Second, get values for page replacement policy, quantum and memory size. Third, construct an available array as our memory and initialize each page of the memory. Fourth, call RoundRobin function to execute our process simulating. Fifth, after executing, the finishing results will be printed to terminal.<br>
+            <b>Create</b> Read in file scheduling traces and construct the processes into the ready queue.<br>
+            <b>Insert</b> Insert a process to the ready queue.This function is called when one quantum finishes and the need time of the process is still not zero, then the process need to be inserted again, or a process in the block queue is unblocked.<br>
+            <b>Block</b> Add one process into the block queue. Every time it points the block tail pointer to the newly blocked process. The function is called when one process meet a page fault and also it cannot replace ant page of the memory, then the process is blocked.<br>
+            <b>Deblock</b> Remove one process of the block queue. Every time it inserts the process which the head pointer points to the ready queue and points the block head pointer to the next process behind the head pointer. This function is called when the block queue is not null and one page of the memory has been used (the page can be replaced).<br>
+            <b>Compare</b> Compare the given address and process name (process identifier) are whethre or not same as the page in the memory. This function is called when determining if one page needed is already in the memory or not.<br>
+            <b>PageFault</b> Check memory page number and determine page replacements. Please refer to my report for detailed page replacement policy, including FIFO, LRU, Second Cache and my algorithm.
+            <br><br>
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+        
+            <h3>References</h3>
+            [1] Jiyuan Shen, Paging Simulator Report for System Descriptions [<a href="https://github.com/ShenJiyuan/paging-simulator/blob/master/SysDescription.pdf">pdf</a>]<br>
+            [2] Jiyuan Shen, Paging Simulator Report for Experiment Results [<a href="https://github.com/ShenJiyuan/paging-simulator/blob/master/Tests%26Results.pdf">pdf</a>]<br>
+            <br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
