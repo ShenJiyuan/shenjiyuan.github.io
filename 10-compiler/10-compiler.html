@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "Small-C Compiler Simulator" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2><center>Small-C Compiler Simulator</center></h2>
+            
+            <center>Jiyuan Shen</center>
+            
+            <h3>My Work</h3>
+            <p>
+            &clubs; Designed and implemented a Compiler Simulator for Small-C Language, which can conduct lexical analysis, syntax analysis, semantic and syntac checking and intermediate code translation for LLVM.
+            </p>
+            
+            <h3>Method</h3>
+            <p>
+            <b>Structure Overview</b><br>
+            This project includes two implementation stages: Lexical Analyzer and Code Generator. For the first one, Lexical Analyzer, work as front end, should parse the sentences to intermediate parse tree. For the second one, Code Generator, work as back end, should return a LLVM assembly program which can be run on LLVM.
+            <br><br>
+            
+            <b>Lexical Analyzer</b><br>
+            Lex and Yacc are used to intermediate parse tree. Define a tree node structure in the header file. Both of lex file and yacc file should include this structure to deliver terminals. After lexeme analyzing in lex, the terminals are delivered to yacc to create the parse tree through defined grammar rules. After lexical analyzer, we can achieve a parse tree as the intermediate representation.<br>
+            Example Parse Tree [<a href="https://github.com/ShenJiyuan/compiler-simulator/blob/master/front-end/testCase/arth/project1.output">sample output</a>]
+            <center><img src="tree.png" alt="tracked video" style="width:400px;height:350px"></center>
+            <br><br>
+            
+            <b>Code Generator</b><br>
+            Do a traversal on the intermediate parse tree by pre-ordering. And for each grammar, corresponding translation actions should be applied and implemented. We then should conduct implementations as variable declaration and initialization, function declaration and calling, expression encoding, input/output and branch. For register allocation, it is a initial implementation to recount the register every time we encounter with FUNC rule. Then in the semantic analysis stage, checkings are completed step by step: first, variables and functions should be declared before usage; second, variables and functions should not be re-declared; third, reserved words cannot be used as identifiers; fourth, program must contain a function int main() to be the entrance; fifth, break and continue can only be used in a loop; sixth, right-value cannot be assigned by any value or expression. Please refer to detailed implementation and explanations in my reference documentations.<br>
+            Example LLVM Code [<a href="https://github.com/ShenJiyuan/compiler-simulator/blob/master/testcases/arth/arth.ll">sample output</a>]
+            <center><img src="code.png" alt="tracked video" style="width:600px;height:350px"></center>
+            <br><br>
+            
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+        
+            <h3>References</h3>
+            [1] Online Manuals: The Lex and Yacc [<a href="http://dinosaur.compilertools.net/">webpage</a>]<br>
+            [2] The LLVM Compiler Infrestructure [<a href="https://llvm.org/">webpage</a>]<br>
+            [3] Jiyuan Shen, Small-C Compiler Simulator Code [<a href="https://github.com/ShenJiyuan/compiler-simulator">git</a>]<br>
+            [4] Jiyuan Shen, Small-C Compiler Simulator Report [<a href="https://github.com/ShenJiyuan/compiler-simulator/blob/master/code-generator/Report2.pdf">pdf</a>]
+            <br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
