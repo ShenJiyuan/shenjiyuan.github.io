@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <meta name="Description" content="Basic Gray">
+                <meta name="author" content="CoffeeCup Software, Inc.">
+                    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+                        <title>Understand "File Sharing P2P Application" in 5min</title>
+                        <link rel="stylesheet" href="stylesheets/default.css">
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+                            <script type="text/javascript" src="javascripts/behavior.js"></script>
+                            <!--[if IE]>
+                             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                             <![endif]-->
+    </head>
+    <body>
+        <section id="intro3">
+            <h2><center>File Sharing P2P Application</center></h2>
+            
+            <center>Jiyuan Shen</center>
+            
+            <h3>My Work</h3>
+            <p>
+            &clubs; Designed and implemented file sharing application by TCP Socket APIs.<br>
+            &clubs; Designed and implemented file sharing application by UDP Socket APIs and RDT3.0 at application layer.
+            </p>
+            
+            <h3>Method</h3>
+            <p>
+            <b>Using TCP Socket APIs</b><br>
+            Implement C/S model: 1. server listens to a given port; 2. client initiates a TCP connection to the server; 3. client send a request to download a file/text; 4. server respond with the file/text; 5. the client save the file to local directory. Repeat the before request-respond (3 to 5) until 'esc' is given, then client tear down the TCP connection. Detailed relationship shown as:
+            <center><img src="tcp.png" alt="tracked video" style="width:370px;height:400px"></center>
+            <br><br>
+            
+            
+            <b>Using UDP Socket APIs with RDT3.0 Protocol</b><br>
+            For this one, first use UDP to implement unreliable file transfer; then use RDT3.0 protocol at application layer.<br>
+            UDP work diagram as:
+            <center><img src="udp.png" alt="tracked video" style="width:370px;height:300px"></center><br>
+            RDT3.0 Protocol work diagram as:
+             <center><img src="rdt.png" alt="tracked video" style="width:370px;height:300px"></center>
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!--<b>Example:</b> If this is what the camera sees (single object):<br>
+            <center><img src="static_partition.png" alt="tracked video" style="width:500px;height:800px"></center>
+            Then this is what its heat map looks like:<br>
+            <center><img src="ui5m/HM/HM2D.gif" alt="heatmap 2d" style="width:150px;height:150px">
+            <img src="ui5m/HM/HM3D.gif" alt="heatmap 3d" style="width:150px;height:150px"></center>
+            Different types of activity form different heat map shapes, for example 2-object activities:<br>
+            <center><img src="ui5m/HM/img1.png" alt="heatmaps" style="width:522px;height:300px"></center>-->
+            </p>
+        
+            <h3>References</h3>
+            [1] Java Platform: Standard API Specification [<a href="https://docs.oracle.com/javase/7/docs/api/">webpage</a>]<br>
+            [2] TCP and UDP Socket API, 2015 [<a href="https://www.w3.org/TR/tcp-udp-sockets/">webpage</a>] <br>
+            [3] Jiyuan Shen, Socket Programming Report [<a href="https://github.com/ShenJiyuan/file-sharing-app/blob/master/tcp/Report.pdf">pdf</a>] <br>
+            [4] Jiyuan Shen, RDT Programming Report [<a href="https://github.com/ShenJiyuan/file-sharing-app/blob/master/udp%2Brdt3.0/Report.pdf">pdf</a>]
+            <br><br>
+            <h3>Demo Video</h3>
+            <embed src="https://www.youtube.com/embed/Zslzrpmi-IU" allowfullscreen="true" width="425" height="344">
+            <br><br>
+        </section>
+    </body>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-59284902-1', 'auto');
+         ga('send', 'pageview');
+        </script>
+</html>
